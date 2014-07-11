@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:orientation="vertical" >
+
+    <!-- 高度设置为50  和标题保持一致 -->
+
+    <LinearLayout
+        android:id="@+id/tel_popup_window_main"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#7FB80F"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingRight="5dp" >
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_top_bar_category"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="10"
+            android:background="@drawable/login_editbox"
+            android:drawableLeft="@drawable/search_in"
+            android:drawablePadding="10dp"
+            android:hint="书名、ISBN"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textSize="15.0sp" />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:text="取消"
+            android:textColor="#FFFFFF"
+            android:textSize="18.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<color name="activity_background">#F5F7F2</color><!-- 灰色 Activity背景颜色 -->
+	<color name="activity_title">#EBECE4</color><!-- 灰白色 标题颜色 -->
+	<color name="black_text">#434343</color><!-- 黑色 字体颜色 -->
+</resources> 
