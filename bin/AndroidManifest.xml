@@ -11,6 +11,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
         android:allowBackup="true"
@@ -29,10 +33,21 @@
         <activity
             android:name="com.doubook.LoginActivity"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.doubook.SearchActivity"
+            android:windowSoftInputMode="stateHidden" />
         <!-- <activity -->
         <!-- android:name="com.doubook.MainActivity" -->
         <!-- android:windowSoftInputMode="stateHidden" > -->
         <!-- </activity> -->
+
+        <activity
+            android:name="com.meyao.book.Zxing.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
     </application>
 
 </manifest>

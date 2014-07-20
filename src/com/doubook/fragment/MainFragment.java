@@ -20,72 +20,73 @@ import com.doubook.util.JsoupGetInfo;
 
 public class MainFragment extends BaseFragment {
 
-    private DropDownListView contactList = null;
-    private ContactListAdapter dataAdapter = null;
-    private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
-    private OnItemClickListener itemListener = null;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(android.os.Message msg) {
+	public static String urll = "";
+	private DropDownListView contactList = null;
+	private ContactListAdapter dataAdapter = null;
+	private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
+	private OnItemClickListener itemListener = null;
+	private Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(android.os.Message msg) {
 
-            if (msg.what == 1) {
-                if (itemListener != null) {
-                    contactList.setOnItemClickListener(itemListener);
-                }
-                dataAdapter = new ContactListAdapter(getActivity());
-                dataAdapter.setData(contacters);
-                contactList.setAdapter(dataAdapter);
-            }
-        };
-    };
+			if (msg.what == 1) {
+				dataAdapter = null;
+				dataAdapter = new ContactListAdapter(getActivity());
+				dataAdapter.setData(contacters);
+				contactList.setAdapter(dataAdapter);
+			}
+		};
+	};
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        contentView = inflater.inflate(R.layout.message_layout, container, false);
-        setTitle(getString(R.string.main));
-        return contentView;
-    }
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		contentView = null;
+		contentView = inflater.inflate(R.layout.message_layout, container, false);
+		setTitle(getString(R.string.main));
+		return contentView;
+	}
 
-    private void inintListener() {
-        contactList.setOnDropDownListener(new OnDropDownListener() {
+	private void inintListener() {
+		contactList.setOnDropDownListener(new OnDropDownListener() {
 
-            @Override
-            public void onDropDown() {
-                System.out.println("aaaaaaaaaaaaaa");
-            }
-        });
+			@Override
+			public void onDropDown() {
+				System.out.println("aaaaaaaaaaaaaa");
+			}
+		});
 
-        // set on bottom listener
-        contactList.setOnBottomListener(new OnClickListener() {
+		// set on bottom listener
+		contactList.setOnBottomListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                System.out.println("bbbbbbbbbbbbb");
-            }
-        });
-    }
+			@Override
+			public void onClick(View v) {
+				System.out.println("bbbbbbbbbbbbb");
+			}
+		});
+	}
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
-        inintListener();
-        new Thread() {
-            @Override
-            public void run() {
-                JsoupGetInfo jsoupTest = new JsoupGetInfo();
-                contacters = jsoupTest.getinfo(ContextData.best1);
-                mHandler.sendEmptyMessage(1);
-            }
-        }.start();
+	@Override
+	public void onStart() {
+		super.onStart();
+		contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
+		inintListener();
+		new Thread() {
+			@Override
+			public void run() {
+				contacters = null;
+				JsoupGetInfo jsoupTest = new JsoupGetInfo();
+				contacters = jsoupTest.getinfo(urll);
+				mHandler.sendEmptyMessage(1);
+			}
+		}.start();
 
-    }
+	}
 
-    /**
-     * 设置联系人选择监听
-     * 
-     * @param selectListener
-     */
-    public void setContactSelectListener(OnItemClickListener selectListener) {
-        this.itemListener = selectListener;
-    }
+	/**
+	 * 设置联系人选择监听
+	 * 
+	 * @param selectListener
+	 */
+	public void setContactSelectListener(OnItemClickListener selectListener) {
+		this.itemListener = selectListener;
+	}
 }

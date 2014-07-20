@@ -16,10 +16,12 @@
         android:paddingRight="5dp" >
 
         <ImageView
-            android:id="@+id/btn_back"
+            android:id="@+id/image_sao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_top_bar_category"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/saosao"
             android:visibility="visible" />
 
         <EditText
@@ -39,7 +41,7 @@
             android:textSize="15.0sp" />
 
         <TextView
-            android:id="@+id/Title"
+            android:id="@+id/txt_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"

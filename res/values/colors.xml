@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-	<color name="activity_background">#F5F7F2</color><!-- 灰色 Activity背景颜色 -->
-	<color name="activity_title">#EBECE4</color><!-- 灰白色 标题颜色 -->
-	<color name="black_text">#434343</color><!-- 黑色 字体颜色 -->
-</resources> 
+
+    <color name="activity_background">#F5F7F2</color> <!-- 灰色 Activity背景颜色 -->
+    <color name="activity_title">#EBECE4</color> <!-- 灰白色 标题颜色 -->
+    <color name="black_text">#434343</color> <!-- 黑色 字体颜色 -->
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="GhostWhite">#fff8f8ff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+</resources>
