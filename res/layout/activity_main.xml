@@ -51,6 +51,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >
+
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_gravity="center" >
+        </ProgressBar>
     </FrameLayout>
 
     <LinearLayout
