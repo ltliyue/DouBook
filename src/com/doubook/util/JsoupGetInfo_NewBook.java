@@ -11,14 +11,14 @@ import org.jsoup.select.Elements;
 import com.doubook.bean.BookInfoBean;
 
 /**
- * 排行榜数据解析
+ * 新书榜数据解析
  * 
  * @Copyright Copyright (c) 2012 - 2100
  * @author Administrator
  * @create at 2014年7月22日
  * @version 1.1.0
  */
-public class JsoupGetInfo {
+public class JsoupGetInfo_NewBook {
 
     public ArrayList<BookInfoBean> getinfo(String url) {
         ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
