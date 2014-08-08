@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import cn.trinea.android.common.view.DropDownListView;
 import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
@@ -27,13 +28,27 @@ public class Top2Fragment extends BaseFragment {
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 1:
+                    loadingHide();
+                    dataAdapter = null;
+                    dataAdapter = new ContactListAdapter(getActivity());
+                    dataAdapter.setData(contacters);
+                    contactList.setAdapter(dataAdapter);
+                    break;
 
-            if (msg.what == 1) {
-                loadingHide();
-                dataAdapter = null;
-                dataAdapter = new ContactListAdapter(getActivity());
-                dataAdapter.setData(contacters);
-                contactList.setAdapter(dataAdapter);
+                case 2:
+                    Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
+                    contactList.onDropDownComplete();
+                    break;
+                case 3:
+                    Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
+                    contactList.onBottomComplete();
+                    contactList.setSelection(contacters.size() - 2);
+                    break;
+
+                default:
+                    break;
             }
         };
     };
@@ -51,16 +66,14 @@ public class Top2Fragment extends BaseFragment {
 
             @Override
             public void onDropDown() {
-                System.out.println("aaaaaaaaaaaaaa");
+                mHandler.sendEmptyMessageDelayed(2, 1000);
             }
         });
-
-        // set on bottom listener
         contactList.setOnBottomListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                System.out.println("bbbbbbbbbbbbb");
+                mHandler.sendEmptyMessageDelayed(3, 1000);
             }
         });
     }
