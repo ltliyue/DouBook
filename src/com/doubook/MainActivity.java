@@ -1,7 +1,10 @@
 package com.doubook;
 
+import java.io.IOException;
+
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.doubook.data.ContextData;
-import com.doubook.fragment.Top2Fragment;
-import com.doubook.fragment.Top1Fragment;
 import com.doubook.fragment.New1Fragment;
 import com.doubook.fragment.New2Fragment;
+import com.doubook.fragment.Top1Fragment;
+import com.doubook.fragment.Top2Fragment;
 import com.doubook.widget.SearchPopupWindow;
-import com.meyao.book.Zxing.CaptureActivity;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 
@@ -140,10 +142,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		System.out.println("main..............");
 		if (requestCode == 0) {
 			if (resultCode == RESULT_OK) {
 				String text = intent.getStringExtra("RESULT");
+				Toast.makeText(this, text, ContextData.toastTime).show();
 				Intent mIntent = new Intent(MainActivity.this, SearchActivity.class);
 				mIntent.putExtra("text", text);
 				startActivity(mIntent);

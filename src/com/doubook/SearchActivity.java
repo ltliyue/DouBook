@@ -116,6 +116,7 @@ public class SearchActivity extends Activity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 text = intent.getStringExtra("RESULT");
+                Toast.makeText(this, text, ContextData.toastTime).show();
                 findBookInfo();
             } else if (resultCode == RESULT_CANCELED) {
             }

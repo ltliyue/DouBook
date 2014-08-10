@@ -47,6 +47,7 @@ public class Top1Fragment extends BaseFragment {
 				break;
 			case 3:
 				Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
+				dataAdapter.notifyDataSetChanged();
 				contactList.onBottomComplete();
 				contactList.setSelection(contacters.size() - 2);
 				break;
@@ -84,10 +85,11 @@ public class Top1Fragment extends BaseFragment {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent mIntent = new Intent(getActivity(), WebActivity.class);
-				mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
-				System.out.println("Tiop:" + contacters.get(position - 1).getLinkUrl());
-				startActivity(mIntent);
+
+				//				Intent mIntent = new Intent(getActivity(), WebActivity.class);
+//				mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
+//				System.out.println("Tiop:" + contacters.get(position - 1).getLinkUrl());
+//				startActivity(mIntent);
 			}
 		});
 	}
@@ -107,7 +109,6 @@ public class Top1Fragment extends BaseFragment {
 				mHandler.sendEmptyMessage(1);
 			}
 		}.start();
-
 	}
 
 }
