@@ -22,12 +22,12 @@ import com.doubook.bean.BookInfoBean;
  * @create at 2013-11-4
  * @version 1.1.0
  */
-public class ContactListAdapter extends BaseAdapter {
+public class ContactListAdapter_NewBook extends BaseAdapter {
 	public static final ImageCache IMAGE_CACHE = CacheManager.getImageCache();
 	private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
 	private LayoutInflater mInflater = null;
 
-	public ContactListAdapter(Context context) {
+	public ContactListAdapter_NewBook(Context context) {
 		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -54,21 +54,17 @@ public class ContactListAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.contact_list_item, null);
+			convertView = mInflater.inflate(R.layout.contact_list_item_new, null);
 		}
 		BookInfoBean info = contacters.get(position);
 		String name = info.getName();
-		RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar);
-		ImageView portrait = ((ImageView) convertView.findViewById(R.id.portrait));
-		TextView point = ((TextView) convertView.findViewById(R.id.point));
-		TextView bookinfo = ((TextView) convertView.findViewById(R.id.bookinfo));
+		ImageView portrait = ((ImageView) convertView.findViewById(R.id.img_portrait));
+		TextView point = ((TextView) convertView.findViewById(R.id.txt_point));
+		TextView bookinfo = ((TextView) convertView.findViewById(R.id.txt_bookinfo));
 
-		((TextView) convertView.findViewById(R.id.name)).setText(name);
-		point.setText(info.getStarpoint() + " " + info.getEvaluateNum());
-		bookinfo.setText(info.getBookinfo());
-		ratingBar.setRating(Float.parseFloat((String) info.getStarpoint()) / 2);
-		// ratingBar.setProgress(Integer.parseInt(info.getStarpoint()));
-		// ratingBar.setStepSize(Float.parseFloat(info.getStarpoint()));
+		((TextView) convertView.findViewById(R.id.txt_name)).setText(name);
+		point.setText(info.getBookinfo());
+		bookinfo.setText(info.getEvaluateNum());
 		IMAGE_CACHE.get(info.getImageUrl(), portrait);
 		return convertView;
 	}

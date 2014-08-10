@@ -7,7 +7,7 @@
         android:id="@+id/divider_view"
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:background="#E0E1DC" />
+        android:background="#ffffff" />
 
     <RelativeLayout
         android:id="@+id/header"
@@ -61,10 +61,14 @@
         </ProgressBar>
     </FrameLayout>
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c6c6c6" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/tab_bg" >
+        android:layout_height="60dp" >
 
         <RelativeLayout
             android:id="@+id/message_layout"
@@ -83,15 +87,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/message_unselected" />
+                    android:src="@drawable/icon4" />
 
                 <TextView
                     android:id="@+id/message_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="消息"
-                    android:textColor="#82858b" />
+                    android:text="榜单(非虚构)"
+                    android:textColor="#82858b"
+                    android:textSize="13sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -112,15 +117,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/contacts_unselected" />
+                    android:src="@drawable/icon3" />
 
                 <TextView
                     android:id="@+id/contacts_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="联系人"
-                    android:textColor="#82858b" />
+                    android:text="榜单(虚构)"
+                    android:textColor="#82858b"
+                    android:textSize="13sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -141,15 +147,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/news_unselected" />
+                    android:src="@drawable/icon2" />
 
                 <TextView
                     android:id="@+id/news_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="动态"
-                    android:textColor="#82858b" />
+                    android:text="新书(非虚构)"
+                    android:textColor="#82858b"
+                    android:textSize="13sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -170,15 +177,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/setting_unselected" />
+                    android:src="@drawable/icon1" />
 
                 <TextView
                     android:id="@+id/setting_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="设置"
-                    android:textColor="#82858b" />
+                    android:text="新书(虚构)"
+                    android:textColor="#82858b"
+                    android:textSize="13sp" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

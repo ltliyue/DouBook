@@ -25,6 +25,10 @@ public class ContextData {
 	 */
 	public static String best2 = "http://book.douban.com/chart?subcat=F";
 	/**
+	 * 最受关注新书榜 非虚构类作品
+	 */
+	public static String newbook = "http://book.douban.com/latest?icn=index-latestbook-all";
+	/**
 	 * http://book.douban.com/top250
 	 */
 	public static String top250 = "http://book.douban.com/top250";

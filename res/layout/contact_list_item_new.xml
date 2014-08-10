@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
 
     <ImageView
-        android:id="@+id/portrait"
+        android:id="@+id/img_portrait"
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:layout_centerVertical="true"
@@ -16,11 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_toRightOf="@id/portrait"
+        android:layout_toRightOf="@id/img_portrait"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
@@ -31,36 +31,36 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/portrait"
+            android:layout_toRightOf="@id/img_portrait"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5" />
-
             <TextView
-                android:id="@+id/point"
+                android:id="@+id/txt_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:text="1111111"
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/bookinfo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="1111111"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@id/img_portrait"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_bookinfo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textColor="#000000"
+                android:text="1111111"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

@@ -11,49 +11,60 @@ import org.jsoup.select.Elements;
 import com.doubook.bean.BookInfoBean;
 
 /**
- * ÐÂÊé°ñÊý¾Ý½âÎö
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½
  * 
  * @Copyright Copyright (c) 2012 - 2100
  * @author Administrator
- * @create at 2014Äê7ÔÂ22ÈÕ
+ * @create at 2014ï¿½ï¿½7ï¿½ï¿½22ï¿½ï¿½
  * @version 1.1.0
  */
 public class JsoupGetInfo_NewBook {
+	int count = 0;
+	int start;
+	int end;
 
-    public ArrayList<BookInfoBean> getinfo(String url) {
-        ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
+	public ArrayList<BookInfoBean> getinfo(String url, int mark) {
+		ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
+		try {
+			if (mark == 0) {
+				start = 0;
+				end = 25;
+			} else {
+				start = 25;
+				end = 50;
+			}
+			Document doc = Jsoup.connect(url).get();
 
-        try {
-            Document doc = Jsoup.connect(url).get();
+			Elements info_main = doc.select("ul.clearfix");
 
-            Elements infoElements = doc.select("li.clearfix");
-            for (int i = 0; i < infoElements.size(); i++) {
-                BookInfoBean bookInfoBean = new BookInfoBean();
-                Element weatherTab = infoElements.get(i);
-                String name = weatherTab.select("a.fleft").text();// shuming
-                String imgSrc = weatherTab.select("img").attr("src");// Í¼Æ¬
-                String linkUrl = weatherTab.select("a").attr("href");
-                String info = weatherTab.select("p.color-gray").text();// xinxi
-                String rating_nums = weatherTab.select("span.font-small").text(); // pingfen
-                String pl = weatherTab.select("span.ml8").text();//
-                // String pricesw =
-                // weatherTab.select("a").get(2).attr("href");// shuming
-                // System.out.println(pricesw);
-                // System.out.println(name + "____" + imgSrc + "____" + info +
-                // "____" + rating_nums + "____" + pl);
-                bookInfoBean.setName(name);
-                bookInfoBean.setImageUrl(imgSrc);
-                bookInfoBean.setLinkUrl(linkUrl);
-                bookInfoBean.setStarpoint(rating_nums);
-                bookInfoBean.setEvaluateNum(pl);
-                bookInfoBean.setBookinfo(info);
+			Elements infoElements = info_main.select("li");
+			for (int j = start; j < end; j++) {
+				count++;
+				if (count == 5) {
+					count = 0;
+					continue;
+				}
+				Element weatherTab = infoElements.get(j);
+				BookInfoBean bookInfoBean = new BookInfoBean();
 
-                contacters.add(bookInfoBean);
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return contacters;
-    }
+				String name = weatherTab.select("h2").text();// shuming
+				String imgSrc = weatherTab.select("img").attr("src");// Í¼Æ¬
+				String info = weatherTab.select("p.color-gray").text();// xinxi
+				String pl = weatherTab.select("p").get(1).text();// xinxi;
+				String linkUrl = weatherTab.select("a").attr("href");// shuming
+
+				bookInfoBean.setName(name);
+				bookInfoBean.setImageUrl(imgSrc);
+				bookInfoBean.setLinkUrl(linkUrl);
+				bookInfoBean.setEvaluateNum(pl);
+				bookInfoBean.setBookinfo(info);
+
+				contacters.add(bookInfoBean);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return contacters;
+	}
 }

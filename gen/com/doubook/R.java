@@ -80,31 +80,31 @@ containing a value of this type.
         public static final int drop_down_list_header_release_min_distance=0x7f060002;
     }
     public static final class drawable {
-        public static final int contacts_selected=0x7f020000;
-        public static final int contacts_unselected=0x7f020001;
-        public static final int divider_line=0x7f020002;
-        public static final int drop_down_list_arrow=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int ic_top_bar_category=0x7f020005;
-        public static final int loading=0x7f020006;
-        public static final int login_edit_normal=0x7f020007;
-        public static final int login_edit_pressed=0x7f020008;
-        public static final int login_editbox=0x7f020009;
-        public static final int message_selected=0x7f02000a;
-        public static final int message_unselected=0x7f02000b;
-        public static final int news_selected=0x7f02000c;
-        public static final int news_unselected=0x7f02000d;
-        public static final int sao=0x7f02000e;
-        public static final int saosao=0x7f02000f;
-        public static final int search=0x7f020010;
-        public static final int search_in=0x7f020011;
-        public static final int setting_selected=0x7f020012;
-        public static final int setting_unselected=0x7f020013;
+        public static final int divider_line=0x7f020000;
+        public static final int drop_down_list_arrow=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_top_bar_category=0x7f020003;
+        public static final int icon1=0x7f020004;
+        public static final int icon11=0x7f020005;
+        public static final int icon2=0x7f020006;
+        public static final int icon22=0x7f020007;
+        public static final int icon3=0x7f020008;
+        public static final int icon33=0x7f020009;
+        public static final int icon4=0x7f02000a;
+        public static final int icon44=0x7f02000b;
+        public static final int loading=0x7f02000c;
+        public static final int login_edit_normal=0x7f02000d;
+        public static final int login_edit_pressed=0x7f02000e;
+        public static final int login_editbox=0x7f02000f;
+        public static final int sao=0x7f020010;
+        public static final int saosao=0x7f020011;
+        public static final int search=0x7f020012;
+        public static final int search_in=0x7f020013;
         public static final int tab_bg=0x7f020014;
     }
     public static final class id {
         public static final int Title=0x7f090010;
-        public static final int action_settings=0x7f090036;
+        public static final int action_settings=0x7f09003a;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f090000;
@@ -119,20 +119,21 @@ containing a value of this type.
         public static final int decode_failed=0x7f090002;
         public static final int decode_succeeded=0x7f090003;
         public static final int divider_view=0x7f09000d;
-        public static final int drop_down_list_footer_button=0x7f090026;
-        public static final int drop_down_list_footer_progress_bar=0x7f090025;
-        public static final int drop_down_list_header_default_text=0x7f09002a;
-        public static final int drop_down_list_header_default_text_layout=0x7f090028;
-        public static final int drop_down_list_header_image=0x7f090029;
-        public static final int drop_down_list_header_progress_bar=0x7f090027;
-        public static final int drop_down_list_header_second_text=0x7f09002b;
+        public static final int drop_down_list_footer_button=0x7f09002a;
+        public static final int drop_down_list_footer_progress_bar=0x7f090029;
+        public static final int drop_down_list_header_default_text=0x7f09002e;
+        public static final int drop_down_list_header_default_text_layout=0x7f09002c;
+        public static final int drop_down_list_header_image=0x7f09002d;
+        public static final int drop_down_list_header_progress_bar=0x7f09002b;
+        public static final int drop_down_list_header_second_text=0x7f09002f;
         public static final int encode_failed=0x7f090004;
         public static final int encode_succeeded=0x7f090005;
         public static final int header=0x7f09000e;
-        public static final int image_sao=0x7f090030;
+        public static final int image_sao=0x7f090034;
+        public static final int img_portrait=0x7f090025;
         public static final int launch_product_query=0x7f090006;
-        public static final int list_of_contact=0x7f09002c;
-        public static final int list_search_contact=0x7f090033;
+        public static final int list_of_contact=0x7f090030;
+        public static final int list_search_contact=0x7f090037;
         public static final int loading=0x7f090013;
         public static final int message_image=0x7f090015;
         public static final int message_layout=0x7f090014;
@@ -143,38 +144,39 @@ containing a value of this type.
         public static final int news_text=0x7f09001c;
         public static final int point=0x7f090023;
         public static final int portrait=0x7f090020;
-        public static final int preview_view=0x7f09002d;
+        public static final int preview_view=0x7f090031;
         public static final int quit=0x7f090007;
         public static final int ratingBar=0x7f090022;
         public static final int restart_preview=0x7f090008;
         public static final int return_scan_result=0x7f090009;
         public static final int search_book_contents_failed=0x7f09000a;
         public static final int search_book_contents_succeeded=0x7f09000b;
-        public static final int search_edittext=0x7f090031;
+        public static final int search_edittext=0x7f090035;
         public static final int selected_view=0x7f09000c;
         public static final int setting_image=0x7f09001e;
         public static final int setting_layout=0x7f09001d;
         public static final int setting_text=0x7f09001f;
-        public static final int tel_popup_window_main=0x7f09002f;
-        public static final int txt_cancel=0x7f090032;
-        public static final int viewfinder_view=0x7f09002e;
-        public static final int weatherRLayout=0x7f090035;
-        public static final int webviewid=0x7f090034;
+        public static final int tel_popup_window_main=0x7f090033;
+        public static final int txt_bookinfo=0x7f090028;
+        public static final int txt_cancel=0x7f090036;
+        public static final int txt_name=0x7f090026;
+        public static final int txt_point=0x7f090027;
+        public static final int viewfinder_view=0x7f090032;
+        public static final int weatherRLayout=0x7f090039;
+        public static final int webviewid=0x7f090038;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int contact_list_item=0x7f030001;
-        public static final int contacts_layout=0x7f030002;
+        public static final int contact_list_item_new=0x7f030002;
         public static final int drop_down_list_footer=0x7f030003;
         public static final int drop_down_list_header=0x7f030004;
-        public static final int message_layout=0x7f030005;
-        public static final int news_layout=0x7f030006;
-        public static final int scan=0x7f030007;
-        public static final int search_layout=0x7f030008;
-        public static final int search_popup_window=0x7f030009;
-        public static final int setting_layout=0x7f03000a;
-        public static final int webview=0x7f03000b;
-        public static final int welcome=0x7f03000c;
+        public static final int list_layout=0x7f030005;
+        public static final int scan=0x7f030006;
+        public static final int search_layout=0x7f030007;
+        public static final int search_popup_window=0x7f030008;
+        public static final int webview=0x7f030009;
+        public static final int welcome=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -194,10 +196,13 @@ containing a value of this type.
         public static final int drop_down_list_header_release_text=0x7f070002;
         public static final int hello_world=0x7f07000a;
         public static final int image_content=0x7f070007;
+        public static final int new1=0x7f07000d;
+        public static final int new2=0x7f07000e;
+        public static final int scan_tip=0x7f07000f;
         /**  主页面 
          */
-        public static final int main=0x7f07000b;
-        public static final int scan_tip=0x7f07000c;
+        public static final int top1=0x7f07000b;
+        public static final int top2=0x7f07000c;
     }
     public static final class style {
         /** 

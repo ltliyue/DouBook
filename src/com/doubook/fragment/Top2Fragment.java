@@ -55,8 +55,8 @@ public class Top2Fragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView = null;
-        contentView = inflater.inflate(R.layout.message_layout, container, false);
-        setTitle(getString(R.string.main));
+        contentView = inflater.inflate(R.layout.list_layout, container, false);
+        setTitle(getString(R.string.top2));
         loadingShow();
         return contentView;
     }
