@@ -21,93 +21,98 @@ import com.doubook.adapter.ContactListAdapter_NewBook;
 import com.doubook.bean.BookInfoBean;
 import com.doubook.data.ContextData;
 import com.doubook.util.JsoupGetInfo_NewBook;
+import com.umeng.analytics.MobclickAgent;
 
 public class New2Fragment extends BaseFragment {
 
-	private DropDownListView contactList = null;
-	private ContactListAdapter_NewBook dataAdapter = null;
-	private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
-	private Handler mHandler = new Handler() {
-		@Override
-		public void handleMessage(android.os.Message msg) {
+    private DropDownListView contactList = null;
+    private ContactListAdapter_NewBook dataAdapter = null;
+    private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
 
-			switch (msg.what) {
-			case 1:
-				loadingHide();
-				dataAdapter = null;
-				dataAdapter = new ContactListAdapter_NewBook(getActivity());
+            switch (msg.what) {
+                case 1:
+                    loadingHide();
+                    dataAdapter = null;
+                    dataAdapter = new ContactListAdapter_NewBook(getActivity());
 
-				dataAdapter.setData(contacters);
-				contactList.setAdapter(dataAdapter);
-				break;
+                    dataAdapter.setData(contacters);
+                    contactList.setAdapter(dataAdapter);
+                    break;
 
-			case 2:
-				contactList.onDropDownComplete();
-				break;
-			case 3:
-				Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
-				contactList.onBottomComplete();
-				contactList.setSelection(contacters.size() - 2);
-				break;
+                case 2:
+                    contactList.onDropDownComplete();
+                    break;
+                case 3:
+                    Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
+                    contactList.onBottomComplete();
+                    contactList.setSelection(contacters.size() - 2);
+                    break;
 
-			default:
-				break;
-			}
-		};
-	};
+                default:
+                    break;
+            }
+        };
+    };
 
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		contentView = null;
-		contentView = inflater.inflate(R.layout.list_layout, container, false);
-		setTitle(getString(R.string.new1));
-		loadingShow();
-		return contentView;
-	}
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        contentView = null;
+        contentView = inflater.inflate(R.layout.list_layout, container, false);
+        loadingShow();
+        return contentView;
+    }
 
-	private void inintListener() {
-		contactList.setOnDropDownListener(new OnDropDownListener() {
+    private void inintListener() {
+        contactList.setOnDropDownListener(new OnDropDownListener() {
 
-			@Override
-			public void onDropDown() {
-				mHandler.sendEmptyMessageDelayed(2, 1000);
-			}
-		});
-		contactList.setOnBottomListener(new OnClickListener() {
+            @Override
+            public void onDropDown() {
+                mHandler.sendEmptyMessageDelayed(2, 1000);
+            }
+        });
+        contactList.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				mHandler.sendEmptyMessageDelayed(3, 1000);
-			}
-		});
-		contactList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Intent mIntent = new Intent(getActivity(),
+                // WebActivity.class);
+                // mIntent.putExtra("linkUrl", contacters.get(position -
+                // 1).getLinkUrl());
+                // startActivity(mIntent);
+            }
+        });
+    }
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//				Intent mIntent = new Intent(getActivity(), WebActivity.class);
-//				mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
-//				startActivity(mIntent);
-			}
-		});
-	}
+    @Override
+    public void onStart() {
+        super.onStart();
+        contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
+        inintListener();
+        new Thread() {
+            @Override
+            public void run() {
+                contacters = null;
+                JsoupGetInfo_NewBook jsoupTest = new JsoupGetInfo_NewBook();
+                contacters = jsoupTest.getinfo(ContextData.newbook, 1);
+                if (contacters != null) {
+                    mHandler.sendEmptyMessage(1);
+                }
+            }
+        }.start();
+    }
 
-		inintListener();
-		new Thread() {
-			@Override
-			public void run() {
-				contacters = null;
-				JsoupGetInfo_NewBook jsoupTest = new JsoupGetInfo_NewBook();
-				contacters = jsoupTest.getinfo(ContextData.newbook, 1);
-				if (contacters != null) {
-					mHandler.sendEmptyMessage(1);
-				}
-			}
-		}.start();
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("MainScreen"); // 统计页面
+    }
 
-	}
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("MainScreen");
+    }
 }

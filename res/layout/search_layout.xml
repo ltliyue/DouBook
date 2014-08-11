@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:listViewAttr="http://schemas.android.com/apk/res/com.doubook"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -34,7 +33,7 @@
             android:drawableLeft="@drawable/search_in"
             android:drawablePadding="10dp"
             android:hint="书名、ISBN"
-            android:imeOptions="actionSearch"
+            android:imeOptions="actionGo"
             android:inputType="text"
             android:textSize="15.0sp" />
 
@@ -48,7 +47,7 @@
             android:textSize="18.0sp" />
     </LinearLayout>
 
-    <cn.trinea.android.common.view.DropDownListView
+    <ListView
         android:id="@+id/list_search_contact"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -56,9 +55,6 @@
         android:descendantFocusability="blocksDescendants"
         android:divider="@drawable/divider_line"
         android:dividerHeight="1.0dip"
-        android:fastScrollEnabled="true"
-        listViewAttr:isAutoLoadOnBottom="true"
-        listViewAttr:isDropDownStyle="true"
-        listViewAttr:isOnBottomStyle="true" />
+        android:fastScrollEnabled="true" />
 
 </LinearLayout>

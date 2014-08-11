@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 import cn.trinea.android.common.view.DropDownListView;
 import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
 
@@ -18,6 +18,7 @@ import com.doubook.adapter.ContactListAdapter;
 import com.doubook.bean.BookInfoBean;
 import com.doubook.data.ContextData;
 import com.doubook.util.JsoupGetInfo;
+import com.umeng.analytics.MobclickAgent;
 
 public class Top2Fragment extends BaseFragment {
 
@@ -56,7 +57,6 @@ public class Top2Fragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         contentView = null;
         contentView = inflater.inflate(R.layout.list_layout, container, false);
-        setTitle(getString(R.string.top2));
         loadingShow();
         return contentView;
     }
@@ -67,13 +67,6 @@ public class Top2Fragment extends BaseFragment {
             @Override
             public void onDropDown() {
                 mHandler.sendEmptyMessageDelayed(2, 1000);
-            }
-        });
-        contactList.setOnBottomListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mHandler.sendEmptyMessageDelayed(3, 1000);
             }
         });
     }
@@ -102,5 +95,17 @@ public class Top2Fragment extends BaseFragment {
      */
     public void setContactSelectListener(OnItemClickListener selectListener) {
         this.itemListener = selectListener;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("MainScreen"); // 统计页面
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("MainScreen");
     }
 }

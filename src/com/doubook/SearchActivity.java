@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.doubook.bean.BookInfoBean;
 import com.doubook.data.ContextData;
 import com.doubook.util.JsoupSearchGetInfo;
 import com.meyao.book.Zxing.CaptureActivity;
+import com.umeng.analytics.MobclickAgent;
 
 public class SearchActivity extends Activity {
 
@@ -30,7 +32,7 @@ public class SearchActivity extends Activity {
     private TextView txt_cancel;
     private ImageView image_sao;
     private EditText search_edittext;
-    private DropDownListView contactList = null;
+    private ListView contactList = null;
     private ContactListAdapter dataAdapter = null;
     private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
     private Handler mHandler = new Handler() {
@@ -60,8 +62,7 @@ public class SearchActivity extends Activity {
     }
 
     private void initView() {
-        // TODO Auto-generated method stub
-        contactList = (DropDownListView) findViewById(R.id.list_search_contact);
+        contactList = (ListView) findViewById(R.id.list_search_contact);
         text = getIntent().getStringExtra("text");
         txt_cancel = (TextView) findViewById(R.id.txt_cancel);
         image_sao = (ImageView) findViewById(R.id.image_sao);
@@ -69,23 +70,10 @@ public class SearchActivity extends Activity {
     }
 
     private void initListener() {
-        contactList.setOnDropDownListener(new OnDropDownListener() {
-            @Override
-            public void onDropDown() {
-            }
-        });
-
-        // set on bottom listener
-        contactList.setOnBottomListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
         txt_cancel.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 finish();
             }
         });
@@ -150,4 +138,17 @@ public class SearchActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("SplashScreen"); // 统计页面
+        MobclickAgent.onResume(this); // 统计时长
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("SplashScreen"); // 保证 onPageEnd 在onPause
+        MobclickAgent.onPause(this);// 之前调用,因为 onPause 中会保存信息
+    }
 }

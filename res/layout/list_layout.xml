@@ -13,8 +13,8 @@
         android:divider="@drawable/divider_line"
         android:dividerHeight="1.0dip"
         android:fastScrollEnabled="true"
-        listViewAttr:isAutoLoadOnBottom="true"
+        listViewAttr:isAutoLoadOnBottom="false"
         listViewAttr:isDropDownStyle="true"
-        listViewAttr:isOnBottomStyle="true" />
+        listViewAttr:isOnBottomStyle="false" />
 
 </RelativeLayout>
