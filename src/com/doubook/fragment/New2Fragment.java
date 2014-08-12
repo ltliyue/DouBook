@@ -15,6 +15,7 @@ import android.widget.Toast;
 import cn.trinea.android.common.view.DropDownListView;
 import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
 
+import com.doubook.BookInfoActivity;
 import com.doubook.R;
 import com.doubook.WebActivity;
 import com.doubook.adapter.ContactListAdapter_NewBook;
@@ -76,11 +77,9 @@ public class New2Fragment extends BaseFragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Intent mIntent = new Intent(getActivity(),
-                // WebActivity.class);
-                // mIntent.putExtra("linkUrl", contacters.get(position -
-                // 1).getLinkUrl());
-                // startActivity(mIntent);
+                Intent mIntent = new Intent(getActivity(), BookInfoActivity.class);
+                mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
+                startActivity(mIntent);
             }
         });
     }

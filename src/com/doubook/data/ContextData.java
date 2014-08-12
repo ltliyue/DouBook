@@ -29,6 +29,10 @@ public class ContextData {
 	 */
 	public static String newbook = "http://book.douban.com/latest?icn=index-latestbook-all";
 	/**
+	 * 
+	 */
+	public static String bookinfo  = "http://api.douban.com/book/subject/isbn/";
+	/**
 	 * http://book.douban.com/top250
 	 */
 	public static String top250 = "http://book.douban.com/top250";

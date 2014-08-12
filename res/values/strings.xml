@@ -11,5 +11,6 @@
     <string name="new1">新书榜(非虚构类)</string>
     <string name="new2">新书榜(虚构类)</string>
     <string name="scan_tip">请将二维码置于取景框内扫描</string>
+    <string name="title_activity_book_info">BookInfoActivity</string>
 
 </resources>

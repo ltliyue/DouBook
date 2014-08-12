@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import cn.trinea.android.common.view.DropDownListView;
 import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
 
+import com.doubook.BookInfoActivity;
 import com.doubook.MainActivity;
 import com.doubook.R;
 import com.doubook.WebActivity;
@@ -79,13 +80,9 @@ public class Top1Fragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // Intent mIntent = new Intent(getActivity(),
-                // WebActivity.class);
-                // mIntent.putExtra("linkUrl", contacters.get(position -
-                // 1).getLinkUrl());
-                // System.out.println("Tiop:" + contacters.get(position -
-                // 1).getLinkUrl());
-                // startActivity(mIntent);
+                Intent mIntent = new Intent(getActivity(), BookInfoActivity.class);
+                mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
+                startActivity(mIntent);
             }
         });
     }

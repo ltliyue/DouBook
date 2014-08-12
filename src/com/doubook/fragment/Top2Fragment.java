@@ -2,6 +2,7 @@ package com.doubook.fragment;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -9,10 +10,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.Toast;
 import cn.trinea.android.common.view.DropDownListView;
 import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
 
+import com.doubook.BookInfoActivity;
 import com.doubook.R;
 import com.doubook.adapter.ContactListAdapter;
 import com.doubook.bean.BookInfoBean;
@@ -67,6 +70,16 @@ public class Top2Fragment extends BaseFragment {
             @Override
             public void onDropDown() {
                 mHandler.sendEmptyMessageDelayed(2, 1000);
+            }
+        });
+        contactList.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent mIntent = new Intent(getActivity(), BookInfoActivity.class);
+                mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
+                startActivity(mIntent);
             }
         });
     }

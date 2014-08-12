@@ -29,9 +29,9 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.welcome);
         sharedPreferences = getSharedPreferences("AccessToken", 0);
         editor = sharedPreferences.edit();
@@ -46,7 +46,7 @@ public class WelcomeActivity extends Activity {
     private void initView() {
         iv = (RelativeLayout) this.findViewById(R.id.weatherRLayout);
         alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
-        alphaAnimation.setDuration(3000);
+        alphaAnimation.setDuration(2000);
         iv.startAnimation(alphaAnimation);
 
     }
@@ -60,7 +60,7 @@ public class WelcomeActivity extends Activity {
                     startActivity(intent);
                     finish();
                 } else {
-                    intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                    intent = new Intent(WelcomeActivity.this, FirstActivity.class);
                     startActivity(intent);
                     finish();
                 }
