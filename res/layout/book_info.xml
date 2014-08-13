@@ -9,8 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#7FB80F"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp" >
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
 
         <ImageView
             android:id="@+id/btn_back"

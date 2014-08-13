@@ -19,10 +19,11 @@ import com.doubook.R;
 import com.doubook.adapter.ContactListAdapter;
 import com.doubook.bean.BookInfoBean;
 import com.doubook.data.ContextData;
+import com.doubook.util.GestureDoInterface;
 import com.doubook.util.JsoupGetInfo;
 import com.umeng.analytics.MobclickAgent;
 
-public class Top1Fragment extends BaseFragment {
+public class Top1Fragment extends BaseFragment implements GestureDoInterface {
 
     private DropDownListView contactList = null;
     private ContactListAdapter dataAdapter = null;
@@ -33,15 +34,6 @@ public class Top1Fragment extends BaseFragment {
         public void handleMessage(android.os.Message msg) {
 
             switch (msg.what) {
-                case 0:
-                    loadingHide();
-                    inintListener();
-                    dataAdapter = null;
-                    dataAdapter = new ContactListAdapter(getActivity());
-                    dataAdapter.setData(ContextData.contacters);
-                    contactList.setAdapter(dataAdapter);
-                    ContextData.contacters = null;
-                    break;
                 case 1:
                     loadingHide();
                     inintListener();
@@ -98,7 +90,8 @@ public class Top1Fragment extends BaseFragment {
         }
         contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
         if (ContextData.contacters != null) {
-            mHandler.sendEmptyMessage(0);
+            contacters = ContextData.contacters;
+            mHandler.sendEmptyMessage(1);
         } else {
             new Thread() {
                 @Override
@@ -123,5 +116,20 @@ public class Top1Fragment extends BaseFragment {
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("MainScreen");
+    }
+
+    @Override
+    public void gestureDo(GestureType type, float lineLength) {
+        // TODO Auto-generated method stub
+        switch (type) {
+            case LEFT:
+                System.out.println("Left!!!!!!!!!!"); // 向左滑动
+                break;
+            case RIGHT:
+                System.out.println("Right!!!!!!!!!!"); // 向右滑动
+                break;
+            default:
+                break;
+        }
     }
 }
