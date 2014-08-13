@@ -16,6 +16,7 @@ import cn.trinea.android.common.util.HttpUtils;
 import cn.trinea.android.common.util.JSONUtils;
 
 import com.doubook.data.ContextData;
+import com.doubook.util.JsoupGetInfo;
 
 public class WelcomeActivity extends Activity {
 
@@ -29,10 +30,8 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.welcome);
+        openAThread();
         sharedPreferences = getSharedPreferences("AccessToken", 0);
         editor = sharedPreferences.edit();
         if (!sharedPreferences.getString("refresh_token", "").equalsIgnoreCase("")) {
@@ -41,6 +40,18 @@ public class WelcomeActivity extends Activity {
         }
         initView();
         initListener();
+    }
+
+    private void openAThread() {
+        // TODO Auto-generated method stub
+        new Thread() {
+            @Override
+            public void run() {
+                ContextData.contacters = null;
+                JsoupGetInfo jsoupTest = new JsoupGetInfo();
+                ContextData.contacters = jsoupTest.getinfo(ContextData.best1);
+            }
+        }.start();
     }
 
     private void initView() {

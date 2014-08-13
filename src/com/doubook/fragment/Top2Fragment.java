@@ -28,19 +28,19 @@ public class Top2Fragment extends BaseFragment {
     private DropDownListView contactList = null;
     private ContactListAdapter dataAdapter = null;
     private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
-    private OnItemClickListener itemListener = null;
+    private boolean started = false;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1:
                     loadingHide();
+                    inintListener();
                     dataAdapter = null;
                     dataAdapter = new ContactListAdapter(getActivity());
                     dataAdapter.setData(contacters);
                     contactList.setAdapter(dataAdapter);
                     break;
-
                 case 2:
                     Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
                     contactList.onDropDownComplete();
@@ -48,9 +48,7 @@ public class Top2Fragment extends BaseFragment {
                 case 3:
                     Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
                     contactList.onBottomComplete();
-                    contactList.setSelection(contacters.size() - 2);
                     break;
-
                 default:
                     break;
             }
@@ -76,7 +74,6 @@ public class Top2Fragment extends BaseFragment {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Intent mIntent = new Intent(getActivity(), BookInfoActivity.class);
                 mIntent.putExtra("linkUrl", contacters.get(position - 1).getLinkUrl());
                 startActivity(mIntent);
@@ -87,27 +84,19 @@ public class Top2Fragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+        if (started) {
+            return;
+        }
         contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
-        inintListener();
         new Thread() {
             @Override
             public void run() {
-                contacters = null;
                 JsoupGetInfo jsoupTest = new JsoupGetInfo();
                 contacters = jsoupTest.getinfo(ContextData.best2);
                 mHandler.sendEmptyMessage(1);
             }
         }.start();
-
-    }
-
-    /**
-     * 设置联系人选择监听
-     * 
-     * @param selectListener
-     */
-    public void setContactSelectListener(OnItemClickListener selectListener) {
-        this.itemListener = selectListener;
+        started = true;
     }
 
     @Override

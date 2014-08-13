@@ -1,7 +1,7 @@
 package com.doubook.adapter;
 
 import java.util.ArrayList;
-import android.annotation.SuppressLint;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import cn.trinea.android.common.service.impl.ImageCache;
 import cn.trinea.android.common.util.CacheManager;
+
 import com.doubook.R;
 import com.doubook.bean.BookInfoBean;
 
@@ -51,6 +52,8 @@ public class ContactListAdapter extends BaseAdapter {
         return position;
     }
 
+    
+    
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -69,9 +72,8 @@ public class ContactListAdapter extends BaseAdapter {
         if (info.getStarpoint() != null && !info.getStarpoint().equalsIgnoreCase("")) {
             ratingBar.setRating(Float.parseFloat(info.getStarpoint()) / 2);
         }
-        // ratingBar.setProgress(Integer.parseInt(info.getStarpoint()));
-        // ratingBar.setStepSize(Float.parseFloat(info.getStarpoint()));
         IMAGE_CACHE.get(info.getImageUrl(), portrait);
+        
         return convertView;
     }
 }

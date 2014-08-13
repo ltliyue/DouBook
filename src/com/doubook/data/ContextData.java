@@ -1,5 +1,9 @@
 package com.doubook.data;
 
+import java.util.ArrayList;
+
+import com.doubook.bean.BookInfoBean;
+
 public class ContextData {
 
 	// 这是我的APP
@@ -7,7 +11,7 @@ public class ContextData {
 	public static final String Secret = "63324041aaf91126";
 	public static final String redirect_uri = "http://book.douban.com";
 	public static String access_token = "";
-
+	public static ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
 	/**
 	 * 登陆
 	 */

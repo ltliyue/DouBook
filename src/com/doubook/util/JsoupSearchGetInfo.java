@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 import com.doubook.bean.BookInfoBean;
 
 /**
- * ËÑË÷ÐÅÏ¢½âÎö
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
  * 
  * @author Meyao
  */
@@ -19,7 +19,8 @@ public class JsoupSearchGetInfo {
 
     public ArrayList<BookInfoBean> getinfo(String url, String text) {
         ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
-        url = url + text;
+        url = url + URLtoUTF8.toUtf8String(text);
+        System.out.println(url);
         try {
             Document doc = Jsoup.connect(url).get();
 
@@ -29,7 +30,7 @@ public class JsoupSearchGetInfo {
                 Element weatherTab = infoElements.get(i);
                 String name = weatherTab.select("a").attr("title");// shuming
                 String imgSrc = weatherTab.select("img").attr("src");// Í¼Æ¬
-                String linkUrl = weatherTab.select("a").attr("nbg");
+                String linkUrl = weatherTab.select("a").attr("href");
                 String info = weatherTab.select("div.pub").text();// xinxi
                 String rating_nums = weatherTab.select("span.rating_nums").text(); // pingfen
                 String pl = weatherTab.select("span.pl").text();//

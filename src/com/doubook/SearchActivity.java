@@ -10,14 +10,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-import cn.trinea.android.common.view.DropDownListView;
-import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
 
 import com.doubook.adapter.ContactListAdapter;
 import com.doubook.bean.BookInfoBean;
@@ -90,17 +90,25 @@ public class SearchActivity extends Activity {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                // TODO Auto-generated method stub
                 text = v.getText().toString();
                 findBookInfo();
                 return true;
+            }
+        });
+        contactList.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                Intent mIntent = new Intent(SearchActivity.this, BookInfoActivity.class);
+                mIntent.putExtra("linkUrl", contacters.get(position).getLinkUrl());
+                startActivity(mIntent);
             }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        System.out.println("search..............");
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 text = intent.getStringExtra("RESULT");
@@ -117,7 +125,6 @@ public class SearchActivity extends Activity {
     public void onStart() {
         super.onStart();
         findBookInfo();
-
     }
 
     private void findBookInfo() {

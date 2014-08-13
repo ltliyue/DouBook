@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:paddingBottom="4dp"
+    android:paddingTop="5dp" >
 
     <ImageView
         android:id="@+id/portrait"
@@ -24,16 +26,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:text="1111111"
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/portrait"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -49,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="1111111"
-                android:textSize="16sp" />
+                android:textColor="#c9cebf"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
@@ -58,9 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="1111111"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textColor="#54594b"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -29,6 +29,7 @@ public class New1Fragment extends BaseFragment {
     private DropDownListView contactList = null;
     private ContactListAdapter_NewBook dataAdapter = null;
     private ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
+    private boolean started = false;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
@@ -36,9 +37,9 @@ public class New1Fragment extends BaseFragment {
             switch (msg.what) {
                 case 1:
                     loadingHide();
+                    inintListener();
                     dataAdapter = null;
                     dataAdapter = new ContactListAdapter_NewBook(getActivity());
-
                     dataAdapter.setData(contacters);
                     contactList.setAdapter(dataAdapter);
                     break;
@@ -87,9 +88,10 @@ public class New1Fragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+        if (started) {
+            return;
+        }
         contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
-
-        inintListener();
         new Thread() {
             @Override
             public void run() {
@@ -101,6 +103,7 @@ public class New1Fragment extends BaseFragment {
                 }
             }
         }.start();
+        started = true;
     }
 
     @Override

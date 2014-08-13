@@ -2,147 +2,141 @@ package com.doubook;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.LayoutInflater;
+import android.text.Html;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.trinea.android.common.service.impl.ImageCache;
 import cn.trinea.android.common.util.CacheManager;
-import cn.trinea.android.common.util.HttpUtils;
-
-import com.doubook.data.ContextData;
 
 public class BookInfoActivity extends Activity {
-	public static final ImageCache IMAGE_CACHE = CacheManager.getImageCache();
-	public static final String TAG = "DianpuActivity";
-	private LinearLayout lin_infos;
-	private LayoutInflater myLayoutInflater;
-	private View myView;
-	private ImageView image;
-	private TextView name, point, writer, pub, pubdate, pagenum, price, isbn;
-	private String linkUrl, namesString, imagesString, isbnString;
-	// ArrayList<String> arrayInfo;
-	private SharedPreferences sharedPreferences;
-	private SharedPreferences.Editor editor;
+    public static final ImageCache IMAGE_CACHE = CacheManager.getImageCache();
+    private ImageView image;
+    private TextView Title, name, point, infos, txt_intro_jianjie, txt_intro_writer;
+    private ImageView btn_back;
+    private RatingBar ratingBar;
+    private ProgressBar loading;
+    private LinearLayout lin_context_jianjie, lin_context_writer;
+    private ArrayList<String> arrayList = new ArrayList<String>();
+    private String linkUrl, namesString, imagesString, isbnString, ratingString, collectionString, txt_introString;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.book_info);
-		sharedPreferences = getSharedPreferences("AccessToken", 0);
-		editor = sharedPreferences.edit();
-		linkUrl = getIntent().getStringExtra("linkUrl");
-		initView();
-		initListener();
-		getUserinfo();
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.book_info);
+        loading = (ProgressBar) findViewById(R.id.loading);
+        linkUrl = getIntent().getStringExtra("linkUrl");
+        loading.setVisibility(View.VISIBLE);
+        getUserinfo();
+        initView();
+        initListener();
+    }
 
-	public void initView() {
-		image = (ImageView) findViewById(R.id.image);
-		name = (TextView) findViewById(R.id.name);
-		lin_infos = (LinearLayout) findViewById(R.id.lin_infos);
-		point = (TextView) findViewById(R.id.point);
-		myLayoutInflater = getLayoutInflater();
-	}
+    public void initView() {
 
-	private void initListener() {
-	}
+        Title = (TextView) findViewById(R.id.Title);
+        Title.setText("图书信息");
+        image = (ImageView) findViewById(R.id.image);
+        name = (TextView) findViewById(R.id.name);
+        point = (TextView) findViewById(R.id.point);
+        infos = (TextView) findViewById(R.id.infos);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        btn_back = (ImageView) findViewById(R.id.btn_back);
+        txt_intro_jianjie = (TextView) findViewById(R.id.txt_intro_jianjie);
+        txt_intro_writer = (TextView) findViewById(R.id.txt_intro_writer);
+        lin_context_jianjie = (LinearLayout) findViewById(R.id.lin_context_jianjie);
+        lin_context_writer = (LinearLayout) findViewById(R.id.lin_context_writer);
+    }
 
-	public void getUserinfo() {
-		new Thread() {
-			@Override
-			public void run() {
-				try {
-					Document doc = Jsoup.connect(linkUrl).get();
+    private void initListener() {
+        btn_back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 
-					Elements info_main = doc.select("div.subject");
+    public void getUserinfo() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Document doc = Jsoup.connect(linkUrl).get();
+                    Elements info_main = doc.select("div.subject");
+                    Element weatherTab = info_main.first();
+                    Elements rating = doc.select("div.rating_wrap");
 
-					Element weatherTab = info_main.get(0);
+                    Elements intro = doc.select("div.intro");
+                    for (int i = 0; i < intro.size(); i++) {
+                        if (intro.get(i).html().indexOf("(展开全部)") != -1) {
+                        } else {
+                            arrayList.add(intro.get(i).html());
+                        }
+                    }
 
-					// namesString = weatherTab.select("a").attr("title");//
-					// shuming
-					imagesString = weatherTab.select("img").attr("src");// ͼƬ
+                    namesString = info_main.select("a").attr("title");// shuming
+                    imagesString = weatherTab.select("img").attr("src");// ͼƬ
+                    if (imagesString == null && namesString != null) {
+                        handler.sendEmptyMessage(1);
+                    }
+                    isbnString = weatherTab.getElementById("info").html().replace("href", "src");
 
-					String info = weatherTab.getElementById("info").text();
-					String infos[] = new String[30];
-					// arrayInfo = new ArrayList<String>();
-					infos = info.split(" ");
-					isbnString = infos[infos.length - 1];
-					getUserinfo2();
-					// for (int i = 0; i < infos.length; i = i + 2) {
-					// if ((i + 1) < infos.length) {
-					// arrayInfo.add(infos[i] + " " + infos[i + 1]);
-					// }
-					// }
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+                    ratingString = rating.select("strong.rating_num").text();
+                    collectionString = rating.select("p.font_normal").text();
+                    if (isbnString == null) {
+                        getUserinfo();
+                    } else {
+                        Message message = handler.obtainMessage(0);
+                        handler.sendMessage(message);
+                    }
 
-				Message message = handler.obtainMessage(0);
-				handler.sendMessage(message);
-			}
-		}.start();
-	}
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-	public void getUserinfo2() {
-		new Thread() {
-			@Override
-			public void run() {
-				String result = HttpUtils.httpGetString(ContextData.bookinfo + isbnString + "?alt=json");
-				try {
-					System.out.println(result);
-					JSONObject data1 = new JSONObject(result);
-					JSONObject title = data1.getJSONObject("title");
-					JSONObject attribute = data1.getJSONObject("db:attribute");
+            }
+        }.start();
+    }
 
-					String attributeString = attribute.getString("$t");
-					System.out.println("111:" + attributeString);
-					// JSONObject shop =
-					// shop_get_response.getJSONObject("shop");
-					// namesString, pointsString, writersString, pubsString,
-					// pubdatesString, pagenumsString, pricesString,
-					// isbnsString;
-					namesString = title.getString("$t");
-					// bulletin = shop.getString("bulletin");
-					// desc = shop.getString("desc");
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				Message message = handler.obtainMessage(0);
-				handler.sendMessage(message);
-			}
-		}.start();
-	}
+    Handler handler = new Handler() {
+        public void handleMessage(Message message) {
+            if (message.what == 0) {
 
-	Handler handler = new Handler() {
-		public void handleMessage(Message message) {
-			name.setText(namesString);
-			IMAGE_CACHE.get(imagesString, image);
-			// for (int i = 0; i < arrayInfo.size(); i++) {
-			// myView =
-			// myLayoutInflater.inflate(R.layout.activity_book_info_item, null);
-			// TextView textView = (TextView)
-			// myView.findViewById(R.id.txt_info);
-			// textView.setText(arrayInfo.get(i));
-			// lin_infos.addView(myView);
-			// }
-		}
-	};
-
+                loading.setVisibility(View.GONE);
+                ratingBar.setVisibility(View.VISIBLE);
+                lin_context_jianjie.setVisibility(View.VISIBLE);
+                if (arrayList.size() >= 2) {
+                    lin_context_writer.setVisibility(View.VISIBLE);
+                    txt_intro_writer.setText(Html.fromHtml(arrayList.get(1)));
+                }
+                name.setText(namesString);
+                IMAGE_CACHE.get(imagesString, image);
+                if (ratingString != null && !ratingString.equalsIgnoreCase("")) {
+                    ratingBar.setRating(Float.parseFloat(ratingString) / 2);
+                }
+                point.setText(ratingString + collectionString);
+                infos.setText(Html.fromHtml(isbnString));
+                txt_intro_jianjie.setText(Html.fromHtml(arrayList.get(0)));
+            }
+            if (message.what == 1) {
+                Toast.makeText(BookInfoActivity.this, "此书来自豆瓣阅读，无法查看详细信息", 1000).show();
+            }
+        }
+    };
 }
