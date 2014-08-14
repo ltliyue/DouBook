@@ -23,7 +23,6 @@ public class FirstActivity extends Activity {
     }
 
     private void initView() {
-        // TODO Auto-generated method stub
         btn_login = (TextView) findViewById(R.id.btn_login);
         btn_goin = (TextView) findViewById(R.id.btn_goin);
     }

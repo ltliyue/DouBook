@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.doubook.MainActivity;
 import com.doubook.R;
+import com.doubook.util.GestureDoInterface;
 
 /**
  * Fragment自定义基类，继承自Fragment提取各模块可能公用的部分方法
@@ -28,7 +29,7 @@ import com.doubook.R;
  * @create at 2014-7-9
  * @version 1.1.0
  */
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements GestureDoInterface {
     private ProgressBar loading;
     protected static BlockingQueue<BaseFragment> fragmentQueue = new LinkedBlockingQueue<BaseFragment>();
     protected MainActivity owner = null;
@@ -249,5 +250,11 @@ public class BaseFragment extends Fragment {
         transaction.detach(this);
         transaction.attach(this);
         transaction.commitAllowingStateLoss();
+    }
+
+    @Override
+    public void gestureDo(GestureType type, float lineLength) {
+        // TODO Auto-generated method stub
+        System.out.println("hahaha");
     }
 }

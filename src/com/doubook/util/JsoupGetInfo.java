@@ -11,11 +11,11 @@ import org.jsoup.select.Elements;
 import com.doubook.bean.BookInfoBean;
 
 /**
- * ÅÅÐÐ°ñÊý¾Ý½âÎö
+ * ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½
  * 
  * @Copyright Copyright (c) 2012 - 2100
  * @author Administrator
- * @create at 2014Äê7ÔÂ22ÈÕ
+ * @create at 2014ï¿½ï¿½7ï¿½ï¿½22ï¿½ï¿½
  * @version 1.1.0
  */
 public class JsoupGetInfo {
@@ -51,7 +51,6 @@ public class JsoupGetInfo {
                 contacters.add(bookInfoBean);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return contacters;

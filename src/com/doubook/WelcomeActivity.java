@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -43,7 +41,6 @@ public class WelcomeActivity extends Activity {
     }
 
     private void openAThread() {
-        // TODO Auto-generated method stub
         new Thread() {
             @Override
             public void run() {

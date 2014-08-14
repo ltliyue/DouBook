@@ -23,7 +23,7 @@ import com.doubook.util.GestureDoInterface;
 import com.doubook.util.JsoupGetInfo;
 import com.umeng.analytics.MobclickAgent;
 
-public class Top1Fragment extends BaseFragment implements GestureDoInterface {
+public class Top1Fragment extends BaseFragment {
 
     private DropDownListView contactList = null;
     private ContactListAdapter dataAdapter = null;
@@ -120,7 +120,7 @@ public class Top1Fragment extends BaseFragment implements GestureDoInterface {
 
     @Override
     public void gestureDo(GestureType type, float lineLength) {
-        // TODO Auto-generated method stub
+        super.gestureDo(type, lineLength);
         switch (type) {
             case LEFT:
                 System.out.println("Left!!!!!!!!!!"); // 向左滑动

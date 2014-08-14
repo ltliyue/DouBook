@@ -77,7 +77,6 @@ public class LoginActivity extends Activity {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    // TODO Auto-generated method stub
                                     HashMap<String, String> parasMap = new HashMap<String, String>();
                                     String httpUrl = ContextData.GetAccessToken;
                                     parasMap.put("client_id", ContextData.APIKey);
@@ -87,11 +86,13 @@ public class LoginActivity extends Activity {
                                     parasMap.put("code", code);
                                     String result = HttpUtils.httpPostString(httpUrl, parasMap);
                                     ContextData.access_token = JSONUtils.getString(result, "access_token", "");
-                                    Log.i(TAG, "access_token = " + JSONUtils.getString(result, "access_token", ""));
-                                    Log.i(TAG, "refresh_token = " + JSONUtils.getString(result, "refresh_token", ""));
                                     editor.putString("access_token", JSONUtils.getString(result, "access_token", ""))
                                         .commit();
                                     editor.putString("refresh_token", JSONUtils.getString(result, "refresh_token", ""))
+                                        .commit();
+                                    editor.putString("douban_user_name",
+                                        JSONUtils.getString(result, "douban_user_name", "")).commit();
+                                    editor.putString("douban_user_id", JSONUtils.getString(result, "douban_user_id", ""))
                                         .commit();
                                 }
                             }).start();

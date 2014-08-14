@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textColor="#c9cebf"
+                android:textColor="#a8aba3"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="#54594b"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>
