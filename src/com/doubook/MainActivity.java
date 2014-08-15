@@ -92,6 +92,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     int count = 0;
     private int wish, read, reading;
     private boolean started = false;
+    private boolean isFirst = true;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
@@ -125,10 +126,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         fragmentManager = getSupportFragmentManager();
         // 第一次启动时选中第0个tab
         setTabSelection(0);
-        if (started) {
-            return;
+        if (!started) {
+            getUserInfo();
+            started = true;
         }
-        started = true;
+    }
+
+    private void getUserInfo() {
         sharedPreferences = getSharedPreferences("AccessToken", 0);
         editor = sharedPreferences.edit();
         new Thread(new Runnable() {
@@ -304,8 +308,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         // 开启一个Fragment事务
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
-        removeFragments(transaction);
-
+        if (isFirst) {
+            removeFragments(transaction);
+            isFirst = false;
+        } else {
+            hideFragments(transaction);
+        }
         switch (index) {
             case 0:
                 Title.setText(R.string.top1);
@@ -318,7 +326,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                     transaction.add(R.id.content, top1Fragment);
                 } else {
                     // 如果MessageFragment不为空，则直接将它显示出来
-                    // transaction.replace(R.id.content, top1Fragment);
                     transaction.show(top1Fragment);
                 }
                 break;
@@ -333,7 +340,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                     transaction.add(R.id.content, top2Fragment);
                 } else {
                     // 如果MessageFragment不为空，则直接将它显示出来
-                    // transaction.replace(R.id.content, top2Fragment);
                     transaction.show(top2Fragment);
                 }
                 break;
@@ -404,6 +410,27 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         }
         if (new2Fragment != null) {
             transaction.remove(new2Fragment);
+        }
+    }
+
+    /**
+     * 将所有的Fragment都置为隐藏状态。
+     * 
+     * @param transaction
+     *        用于对Fragment执行操作的事务
+     */
+    private void hideFragments(FragmentTransaction transaction) {
+        if (top1Fragment != null) {
+            transaction.hide(top1Fragment);
+        }
+        if (top2Fragment != null) {
+            transaction.hide(top2Fragment);
+        }
+        if (new1Fragment != null) {
+            transaction.hide(new1Fragment);
+        }
+        if (new2Fragment != null) {
+            transaction.hide(new2Fragment);
         }
     }
 

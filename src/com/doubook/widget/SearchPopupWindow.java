@@ -1,6 +1,5 @@
 package com.doubook.widget;
 
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,15 +9,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.Toast;
 
 import com.doubook.R;
 import com.doubook.SearchActivity;
@@ -62,7 +60,6 @@ public class SearchPopupWindow extends PopupWindow {
     }
 
     private void inintListener() {
-        // TODO Auto-generated method stub
 //        search_edittext.setOnKeyListener(new OnKeyListener() {// 监听键盘事件
 //                @Override
 //                public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -72,7 +69,6 @@ public class SearchPopupWindow extends PopupWindow {
 //                    }
 //                    return false;
 //                }
-//
 //            });
         search_edittext.setOnEditorActionListener(new OnEditorActionListener() {
 
@@ -118,5 +114,4 @@ public class SearchPopupWindow extends PopupWindow {
                 }
             });
     }
-
 }

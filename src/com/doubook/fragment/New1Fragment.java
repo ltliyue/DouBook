@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -17,7 +16,6 @@ import cn.trinea.android.common.view.DropDownListView.OnDropDownListener;
 
 import com.doubook.BookInfoActivity;
 import com.doubook.R;
-import com.doubook.WebActivity;
 import com.doubook.adapter.ContactListAdapter_NewBook;
 import com.doubook.bean.BookInfoBean;
 import com.doubook.data.ContextData;

@@ -39,7 +39,7 @@ public class BookInfoActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_info);
-        loading = (ProgressBar) findViewById(R.id.loading);
+        loading = (ProgressBar) findViewById(R.id.loading_book);
         linkUrl = getIntent().getStringExtra("linkUrl");
         loading.setVisibility(View.VISIBLE);
         getUserinfo();

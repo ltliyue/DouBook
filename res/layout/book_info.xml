@@ -176,7 +176,7 @@
             </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/loading"
+                android:id="@+id/loading_book"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="60px"
                 android:layout_height="60px"
