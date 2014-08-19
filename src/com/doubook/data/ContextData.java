@@ -11,7 +11,10 @@ public class ContextData {
     public static final String Secret = "63324041aaf91126";
     public static final String redirect_uri = "http://book.douban.com";
     public static String access_token = "";
-    public static ArrayList<BookInfoBean> contacters = new ArrayList<BookInfoBean>();
+    public static ArrayList<BookInfoBean> contacters_1 = new ArrayList<BookInfoBean>();
+    public static ArrayList<BookInfoBean> contacters_2 = new ArrayList<BookInfoBean>();
+    public static ArrayList<BookInfoBean> contacters_3 = new ArrayList<BookInfoBean>();
+    public static ArrayList<BookInfoBean> contacters_4 = new ArrayList<BookInfoBean>();
     /**
      * 登陆
      */
@@ -59,6 +62,7 @@ public class ContextData {
      */
     public static String UserBookSave = "https://api.douban.com/v2/book/user/";
 
-    public static int toastTime = 2600;
+    public static int toastTime = 2000;
+    public static int refreshTime = 800;
 
 }

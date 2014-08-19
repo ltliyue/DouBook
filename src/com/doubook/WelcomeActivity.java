@@ -15,6 +15,7 @@ import cn.trinea.android.common.util.JSONUtils;
 
 import com.doubook.data.ContextData;
 import com.doubook.util.JsoupGetInfo;
+import com.doubook.util.JsoupGetInfo_NewBook;
 
 public class WelcomeActivity extends Activity {
 
@@ -44,9 +45,33 @@ public class WelcomeActivity extends Activity {
         new Thread() {
             @Override
             public void run() {
-                ContextData.contacters = null;
+                ContextData.contacters_1 = null;
                 JsoupGetInfo jsoupTest = new JsoupGetInfo();
-                ContextData.contacters = jsoupTest.getinfo(ContextData.best1);
+                ContextData.contacters_1 = jsoupTest.getinfo(ContextData.best1);
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                ContextData.contacters_2 = null;
+                JsoupGetInfo jsoupTest = new JsoupGetInfo();
+                ContextData.contacters_2 = jsoupTest.getinfo(ContextData.best2);
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                ContextData.contacters_3 = null;
+                JsoupGetInfo_NewBook jsoupTest = new JsoupGetInfo_NewBook();
+                ContextData.contacters_3 = jsoupTest.getinfo(ContextData.newbook, 0);
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                ContextData.contacters_4 = null;
+                JsoupGetInfo_NewBook jsoupTest = new JsoupGetInfo_NewBook();
+                ContextData.contacters_4 = jsoupTest.getinfo(ContextData.newbook, 1);
             }
         }.start();
     }
@@ -56,7 +81,6 @@ public class WelcomeActivity extends Activity {
         alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
         alphaAnimation.setDuration(2000);
         iv.startAnimation(alphaAnimation);
-
     }
 
     private void initListener() {

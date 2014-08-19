@@ -43,6 +43,7 @@ public class New1Fragment extends BaseFragment {
                     break;
 
                 case 2:
+                    Toast.makeText(getActivity(), "刷新成功~", ContextData.toastTime).show();
                     contactList.onDropDownComplete();
                     break;
                 case 3:
@@ -69,7 +70,7 @@ public class New1Fragment extends BaseFragment {
 
             @Override
             public void onDropDown() {
-                mHandler.sendEmptyMessageDelayed(2, 1000);
+                refreshThreadGetInfo();
             }
         });
         contactList.setOnItemClickListener(new OnItemClickListener() {
@@ -90,6 +91,16 @@ public class New1Fragment extends BaseFragment {
             return;
         }
         contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
+        if (ContextData.contacters_3 != null) {
+            contacters = ContextData.contacters_3;
+            mHandler.sendEmptyMessage(1);
+        } else {
+            openThreadGetInfo();
+        }
+        started = true;
+    }
+
+    private void openThreadGetInfo() {
         new Thread() {
             @Override
             public void run() {
@@ -101,7 +112,18 @@ public class New1Fragment extends BaseFragment {
                 }
             }
         }.start();
-        started = true;
+    }
+
+    private void refreshThreadGetInfo() {
+        new Thread() {
+            @Override
+            public void run() {
+                contacters = null;
+                JsoupGetInfo_NewBook jsoupTest = new JsoupGetInfo_NewBook();
+                contacters = jsoupTest.getinfo(ContextData.newbook, 0);
+                mHandler.sendEmptyMessageDelayed(2, 800);
+            }
+        }.start();
     }
 
     @Override

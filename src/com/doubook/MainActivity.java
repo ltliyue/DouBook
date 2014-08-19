@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -41,18 +42,27 @@ import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
     public static final ImageCache IMAGE_CACHE = CacheManager.getImageCache();
+    private FragmentManager fragmentManager;
+    private String access_token, douban_user_id;
+    private String name, large_avatar, descString;
+    private int selected = -1;
+    private int count = 0;
+    private int wish, read, reading;
+    // 处理两次点击返回键退出程序时用
+    private boolean backClicked = false;
+    private boolean started = false;
+    private boolean isFirst = true;
     // 双向滑动菜单布局
     private MySlideMenu bidirSldingLayout;
+    private SearchPopupWindow mSearchPopupWindow;
     private FrameLayout frameLayout_content;
-    private Button btn_exit, btn_login;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private int selected = -1;
-    private ProgressBar loading;
-    private ImageView btn_back, user_photo;
+    // 控件
     private TextView Title, username, desc, txt_wish, txt_reading, txt_read;
-    private SearchPopupWindow mSearchPopupWindow;
-    private ImageView btn_search;
+    private ImageView btn_search, btn_back, user_photo;
+    private Button btn_exit, btn_login;
+    private ProgressBar loading;
     // 用于展示消息的Fragment
     private Top1Fragment top1Fragment;
     // *用于展示联系人的Fragment
@@ -86,17 +96,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     // ** 在Tab布局上显示设置标题的控件
     private TextView settingText;
     // ** 用于对Fragment进行管理
-    private FragmentManager fragmentManager;
-    private String access_token, douban_user_id;
-    private String name, large_avatar, descString;
-    int count = 0;
-    private int wish, read, reading;
-    private boolean started = false;
-    private boolean isFirst = true;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(android.os.Message msg) {
-
             switch (msg.what) {
                 case 0:
                     IMAGE_CACHE.get(large_avatar, user_photo);
@@ -108,6 +110,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                     btn_exit.setVisibility(View.VISIBLE);
                     btn_login.setVisibility(View.GONE);
                     break;
+                case 1:
+                    cancelBackClick();
                 default:
                     break;
             }
@@ -244,7 +248,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         btn_login.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 Intent mIntent = new Intent(MainActivity.this, LoginActivity.class);
                 finish();
                 startActivity(mIntent);
@@ -449,6 +452,24 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return output;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && !backClicked) {
+            backClicked = true;
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            mHandler.sendEmptyMessageDelayed(1, 2000); // 两秒
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 供mHandler调用以判断用户是否要退出程序
+     */
+    private void cancelBackClick() {
+        backClicked = false;
     }
 
     @Override

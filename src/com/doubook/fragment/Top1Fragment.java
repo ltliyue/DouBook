@@ -21,6 +21,7 @@ import com.doubook.bean.BookInfoBean;
 import com.doubook.data.ContextData;
 import com.doubook.util.GestureDoInterface;
 import com.doubook.util.JsoupGetInfo;
+import com.doubook.util.JsoupGetInfo_NewBook;
 import com.umeng.analytics.MobclickAgent;
 
 public class Top1Fragment extends BaseFragment {
@@ -43,7 +44,7 @@ public class Top1Fragment extends BaseFragment {
                     contactList.setAdapter(dataAdapter);
                     break;
                 case 2:
-                    Toast.makeText(getActivity(), "没有更多啦~", ContextData.toastTime).show();
+                    Toast.makeText(getActivity(), "刷新成功~", ContextData.toastTime).show();
                     contactList.onDropDownComplete();
                     break;
                 case 3:
@@ -69,7 +70,7 @@ public class Top1Fragment extends BaseFragment {
         contactList.setOnDropDownListener(new OnDropDownListener() {
             @Override
             public void onDropDown() {
-                mHandler.sendEmptyMessageDelayed(2, 1000);
+                refreshThreadGetInfo();
             }
         });
         contactList.setOnItemClickListener(new OnItemClickListener() {
@@ -89,21 +90,41 @@ public class Top1Fragment extends BaseFragment {
             return;
         }
         contactList = (DropDownListView) contentView.findViewById(R.id.list_of_contact);
-        if (ContextData.contacters != null) {
-            contacters = ContextData.contacters;
+        if (ContextData.contacters_1 != null) {
+            contacters = ContextData.contacters_1;
             mHandler.sendEmptyMessage(1);
         } else {
-            new Thread() {
-                @Override
-                public void run() {
-                    contacters = null;
-                    JsoupGetInfo jsoupTest = new JsoupGetInfo();
-                    contacters = jsoupTest.getinfo(ContextData.best1);
-                    mHandler.sendEmptyMessage(1);
-                }
-            }.start();
+            openThreadGetInfo();
         }
         started = true;
+    }
+
+    private void openThreadGetInfo() {
+        new Thread() {
+            @Override
+            public void run() {
+                contacters = null;
+                JsoupGetInfo jsoupTest = new JsoupGetInfo();
+                contacters = jsoupTest.getinfo(ContextData.best1);
+                if (contacters != null) {
+                    mHandler.sendEmptyMessage(1);
+                } else {
+                    openThreadGetInfo();
+                }
+            }
+        }.start();
+    }
+
+    private void refreshThreadGetInfo() {
+        new Thread() {
+            @Override
+            public void run() {
+                contacters = null;
+                JsoupGetInfo jsoupTest = new JsoupGetInfo();
+                contacters = jsoupTest.getinfo(ContextData.best1);
+                mHandler.sendEmptyMessageDelayed(2, 800);
+            }
+        }.start();
     }
 
     @Override
