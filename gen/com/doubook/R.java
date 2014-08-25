@@ -9,6 +9,22 @@ package com.doubook;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int adId=0x7f010004;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int adSize=0x7f010003;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -145,66 +161,67 @@ containing a value of this type.
         public static final int voip_camerachat=0x7f02003e;
     }
     public static final class id {
-        public static final int Title=0x7f09002b;
+        public static final int Title=0x7f09002c;
+        public static final int adView=0x7f09001b;
         /**  Messages IDs 
          */
         public static final int auto_focus=0x7f090000;
         public static final int bidir_sliding_layout=0x7f090019;
-        public static final int bookinfo=0x7f090034;
-        public static final int btnLayout=0x7f09004f;
-        public static final int btn_back=0x7f09002a;
-        public static final int btn_exit=0x7f090050;
-        public static final int btn_goin=0x7f090042;
-        public static final int btn_login=0x7f090041;
-        public static final int btn_search=0x7f090051;
-        public static final int contacts_image=0x7f090021;
-        public static final int contacts_layout=0x7f090020;
-        public static final int contacts_text=0x7f090022;
-        public static final int content=0x7f09001b;
+        public static final int bookinfo=0x7f090035;
+        public static final int btnLayout=0x7f090050;
+        public static final int btn_back=0x7f09002b;
+        public static final int btn_exit=0x7f090051;
+        public static final int btn_goin=0x7f090043;
+        public static final int btn_login=0x7f090042;
+        public static final int btn_search=0x7f090052;
+        public static final int contacts_image=0x7f090022;
+        public static final int contacts_layout=0x7f090021;
+        public static final int contacts_text=0x7f090023;
+        public static final int content=0x7f09001c;
         public static final int decode=0x7f090001;
         public static final int decode_failed=0x7f090002;
         public static final int decode_succeeded=0x7f090003;
-        public static final int desc=0x7f090048;
-        public static final int desktop_list_group_name=0x7f09004a;
+        public static final int desc=0x7f090049;
+        public static final int desktop_list_group_name=0x7f09004b;
         public static final int divider_view=0x7f09001a;
-        public static final int drop_down_list_footer_button=0x7f09003a;
-        public static final int drop_down_list_footer_progress_bar=0x7f090039;
-        public static final int drop_down_list_header_default_text=0x7f09003e;
-        public static final int drop_down_list_header_default_text_layout=0x7f09003c;
-        public static final int drop_down_list_header_image=0x7f09003d;
-        public static final int drop_down_list_header_progress_bar=0x7f09003b;
-        public static final int drop_down_list_header_second_text=0x7f09003f;
+        public static final int drop_down_list_footer_button=0x7f09003b;
+        public static final int drop_down_list_footer_progress_bar=0x7f09003a;
+        public static final int drop_down_list_header_default_text=0x7f09003f;
+        public static final int drop_down_list_header_default_text_layout=0x7f09003d;
+        public static final int drop_down_list_header_image=0x7f09003e;
+        public static final int drop_down_list_header_progress_bar=0x7f09003c;
+        public static final int drop_down_list_header_second_text=0x7f090040;
         public static final int encode_failed=0x7f090004;
         public static final int encode_succeeded=0x7f090005;
-        public static final int header=0x7f090029;
+        public static final int header=0x7f09002a;
         public static final int image=0x7f09000d;
-        public static final int image_sao=0x7f090056;
-        public static final int img_portrait=0x7f090035;
-        public static final int infos=0x7f09002d;
+        public static final int image_sao=0x7f090057;
+        public static final int img_portrait=0x7f090036;
+        public static final int infos=0x7f09002e;
         public static final int isbn=0x7f090016;
         public static final int launch_product_query=0x7f090006;
-        public static final int lin_context=0x7f09002c;
-        public static final int lin_context_jianjie=0x7f09002e;
-        public static final int lin_context_writer=0x7f090030;
-        public static final int lin_list=0x7f090049;
-        public static final int lin_list_info=0x7f09004b;
-        public static final int lin_user=0x7f090045;
-        public static final int list_of_contact=0x7f090052;
-        public static final int list_search_contact=0x7f090059;
-        public static final int loading=0x7f09001c;
-        public static final int loading_book=0x7f090032;
-        public static final int login_layout=0x7f090043;
-        public static final int message_image=0x7f09001e;
-        public static final int message_layout=0x7f09001d;
-        public static final int message_text=0x7f09001f;
+        public static final int lin_context=0x7f09002d;
+        public static final int lin_context_jianjie=0x7f09002f;
+        public static final int lin_context_writer=0x7f090031;
+        public static final int lin_list=0x7f09004a;
+        public static final int lin_list_info=0x7f09004c;
+        public static final int lin_user=0x7f090046;
+        public static final int list_of_contact=0x7f090053;
+        public static final int list_search_contact=0x7f09005a;
+        public static final int loading=0x7f09001d;
+        public static final int loading_book=0x7f090033;
+        public static final int login_layout=0x7f090044;
+        public static final int message_image=0x7f09001f;
+        public static final int message_layout=0x7f09001e;
+        public static final int message_text=0x7f090020;
         public static final int name=0x7f09000e;
-        public static final int news_image=0x7f090024;
-        public static final int news_layout=0x7f090023;
-        public static final int news_text=0x7f090025;
+        public static final int news_image=0x7f090025;
+        public static final int news_layout=0x7f090024;
+        public static final int news_text=0x7f090026;
         public static final int pagenum=0x7f090014;
         public static final int point=0x7f090010;
-        public static final int portrait=0x7f090033;
-        public static final int preview_view=0x7f090053;
+        public static final int portrait=0x7f090034;
+        public static final int preview_view=0x7f090054;
         public static final int price=0x7f090015;
         public static final int pub=0x7f090012;
         public static final int pubdate=0x7f090013;
@@ -214,44 +231,44 @@ containing a value of this type.
         public static final int return_scan_result=0x7f090009;
         public static final int search_book_contents_failed=0x7f09000a;
         public static final int search_book_contents_succeeded=0x7f09000b;
-        public static final int search_edittext=0x7f090057;
+        public static final int search_edittext=0x7f090058;
         public static final int selected_view=0x7f09000c;
-        public static final int setting=0x7f090044;
-        public static final int setting_image=0x7f090027;
-        public static final int setting_layout=0x7f090026;
-        public static final int setting_text=0x7f090028;
-        public static final int tel_popup_window_main=0x7f090055;
-        public static final int txt_bookinfo=0x7f090038;
-        public static final int txt_cancel=0x7f090058;
-        public static final int txt_intro_jianjie=0x7f09002f;
+        public static final int setting=0x7f090045;
+        public static final int setting_image=0x7f090028;
+        public static final int setting_layout=0x7f090027;
+        public static final int setting_text=0x7f090029;
+        public static final int tel_popup_window_main=0x7f090056;
+        public static final int txt_bookinfo=0x7f090039;
+        public static final int txt_cancel=0x7f090059;
+        public static final int txt_intro_jianjie=0x7f090030;
         public static final int txt_intro_title=0x7f090017;
         public static final int txt_intro_txt=0x7f090018;
-        public static final int txt_intro_writer=0x7f090031;
-        public static final int txt_name=0x7f090036;
-        public static final int txt_point=0x7f090037;
-        public static final int txt_read=0x7f09004e;
-        public static final int txt_reading=0x7f09004d;
-        public static final int txt_wish=0x7f09004c;
-        public static final int umeng_common_icon_view=0x7f09005a;
-        public static final int umeng_common_notification=0x7f09005e;
-        public static final int umeng_common_notification_controller=0x7f09005b;
-        public static final int umeng_common_progress_bar=0x7f090061;
-        public static final int umeng_common_progress_text=0x7f090060;
-        public static final int umeng_common_rich_notification_cancel=0x7f09005d;
-        public static final int umeng_common_rich_notification_continue=0x7f09005c;
-        public static final int umeng_common_title=0x7f09005f;
-        public static final int umeng_update_content=0x7f090064;
-        public static final int umeng_update_id_cancel=0x7f090067;
-        public static final int umeng_update_id_check=0x7f090065;
-        public static final int umeng_update_id_close=0x7f090063;
-        public static final int umeng_update_id_ignore=0x7f090068;
-        public static final int umeng_update_id_ok=0x7f090066;
-        public static final int umeng_update_wifi_indicator=0x7f090062;
-        public static final int user_photo=0x7f090046;
-        public static final int username=0x7f090047;
-        public static final int viewfinder_view=0x7f090054;
-        public static final int weatherRLayout=0x7f090040;
-        public static final int webviewid=0x7f090069;
+        public static final int txt_intro_writer=0x7f090032;
+        public static final int txt_name=0x7f090037;
+        public static final int txt_point=0x7f090038;
+        public static final int txt_read=0x7f09004f;
+        public static final int txt_reading=0x7f09004e;
+        public static final int txt_wish=0x7f09004d;
+        public static final int umeng_common_icon_view=0x7f09005b;
+        public static final int umeng_common_notification=0x7f09005f;
+        public static final int umeng_common_notification_controller=0x7f09005c;
+        public static final int umeng_common_progress_bar=0x7f090062;
+        public static final int umeng_common_progress_text=0x7f090061;
+        public static final int umeng_common_rich_notification_cancel=0x7f09005e;
+        public static final int umeng_common_rich_notification_continue=0x7f09005d;
+        public static final int umeng_common_title=0x7f090060;
+        public static final int umeng_update_content=0x7f090065;
+        public static final int umeng_update_id_cancel=0x7f090068;
+        public static final int umeng_update_id_check=0x7f090066;
+        public static final int umeng_update_id_close=0x7f090064;
+        public static final int umeng_update_id_ignore=0x7f090069;
+        public static final int umeng_update_id_ok=0x7f090067;
+        public static final int umeng_update_wifi_indicator=0x7f090063;
+        public static final int user_photo=0x7f090047;
+        public static final int username=0x7f090048;
+        public static final int viewfinder_view=0x7f090055;
+        public static final int weatherRLayout=0x7f090041;
+        public static final int webviewid=0x7f09006a;
         public static final int writer=0x7f090011;
     }
     public static final class layout {
@@ -354,6 +371,49 @@ containing a value of this type.
         public static final int drop_down_list_header_second_font_style=0x7f080003;
     }
     public static final class styleable {
+        /** Attributes that can be used with a com_baidu_mobads_AdView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #com_baidu_mobads_AdView_adId com.doubook:adId}</code></td><td></td></tr>
+           <tr><td><code>{@link #com_baidu_mobads_AdView_adSize com.doubook:adSize}</code></td><td></td></tr>
+           </table>
+           @see #com_baidu_mobads_AdView_adId
+           @see #com_baidu_mobads_AdView_adSize
+         */
+        public static final int[] com_baidu_mobads_AdView = {
+            0x7f010003, 0x7f010004
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.doubook.R.attr#adId}
+          attribute's value can be found in the {@link #com_baidu_mobads_AdView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.doubook:adId
+        */
+        public static final int com_baidu_mobads_AdView_adId = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.doubook.R.attr#adSize}
+          attribute's value can be found in the {@link #com_baidu_mobads_AdView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.doubook:adSize
+        */
+        public static final int com_baidu_mobads_AdView_adSize = 0;
         /** Attributes that can be used with a drop_down_list_attr.
            <p>Includes the following attributes:</p>
            <table>
